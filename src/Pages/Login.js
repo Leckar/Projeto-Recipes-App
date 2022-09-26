@@ -6,26 +6,26 @@ export default function Login() {
   // const [isDisabled, setDisabled] = useState(true);
   return (
     <div>
-      <input
+      {/* <input
         name="email"
         type="email"
         data-testid="email-input"
-        value={ email }
+        value=""
         placeholder="Digite seu e-mail"
       />
       <input
         name="password"
         type="password"
         data-testid="password-input"
-        value={ password }
+        value=""
       />
       <button
         type="button"
         data-testid="login-submit-btn"
-        disabled={ isDisabled }
+        disabled=""
       >
         Enter
-      </button>
+      </button> */}
     </div>
   );
 }
