@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
-import userReducer from './userReducer';
+import user from './userReducer';
+import recipes from './recipesReducer';
 
-const rootReducer = combineReducers({ userReducer });
+const rootReducer = combineReducers({ user, recipes });
 
 export default rootReducer;

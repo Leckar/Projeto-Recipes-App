@@ -15,11 +15,14 @@ function SearchBar() {
   const handleSearchMethod = ({ target }) => setMethod(target.value);
 
   const handleSearch = async () => {
+    if (method === 'firstLetter' && value.length > 1) {
+      return global.alert('Your search must have only 1 (one) character');
+    }
     const result = await fetchToSearch({ [method]: value }, type);
-    dispatch(setRecipesToShow(result));
     if (!result) {
       return global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
+    dispatch(setRecipesToShow(result));
     if (result.length === 1) {
       history.push(`/${type}/${result[0][(type === 'meals') ? 'idMeal' : 'idDrink']}`);
     }
