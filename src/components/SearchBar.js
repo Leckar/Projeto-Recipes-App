@@ -1,19 +1,28 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import fetchToSearch from '../utils/fetchToSearch';
+import { setRecipesToShow } from '../redux/actions';
 
 function SearchBar() {
   const [method, setMethod] = useState('');
   const [value, setValue] = useState('');
-  const { location: { pathname } } = useHistory();
-  const type = pathname.slice(1);
+  const history = useHistory();
+  const type = history.location.pathname.slice(1);
+  const dispatch = useDispatch();
 
   const handleSearchInput = ({ target }) => setValue(target.value);
   const handleSearchMethod = ({ target }) => setMethod(target.value);
 
   const handleSearch = async () => {
     const result = await fetchToSearch({ [method]: value }, type);
-    console.log(result);
+    dispatch(setRecipesToShow(result));
+    if (!result) {
+      return global.alert('Sorry, we haven\'t found any recipes for these filters.');
+    }
+    if (result.length === 1) {
+      history.push(`/${type}/${result[0][(type === 'meals') ? 'idMeal' : 'idDrink']}`);
+    }
   };
 
   return (

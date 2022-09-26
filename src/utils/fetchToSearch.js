@@ -14,7 +14,7 @@ const fetchToSearch = async ({ ingredient, name, firstLetter }, type) => {
     const { [type]: result } = await response.json();
     return result;
   } catch {
-    return 'error';
+    return undefined;
   }
 };
 
