@@ -18,3 +18,8 @@
   height: 135px;
   width: 163px;
 }
+
+.categories {
+  display: flex;
+  list-style: none;
+}

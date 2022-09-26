@@ -1,52 +1,48 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory, withRouter } from 'react-router-dom';
+import {
+  setRecipesToShow,
+  isFetchingRecipes,
+  setCategoriesToShow,
+} from '../redux/actions';
+import fetchToRecipes from '../utils/fetchToRecipes';
 import styles from './Recipes.module.css';
-
-const START_MAX_INDEX = 11;
+import RecipesCards from '../components/RecipesCards';
+import RecipesCategories from '../components/RecipesCategories';
+import fetchCategories from '../utils/fetchCategories';
 
 function Recipes() {
   const { location: { pathname } } = useHistory();
-  const [minIndex, setMinIndex] = useState(0);
-  const [maxIndex, setMaxIndex] = useState(START_MAX_INDEX);
-  const recipes = useSelector((state) => state.recipes.array);
   const loading = useSelector((state) => state.recipes.isFetching);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setMinIndex(0);
-    setMaxIndex(START_MAX_INDEX);
-  }, []);
+    const fetchRecipes = async () => {
+      dispatch(isFetchingRecipes());
+      const type = pathname.slice(1);
+      const recipesResult = await fetchToRecipes(type);
+      const categoriesResult = await fetchCategories(type);
+      dispatch(setCategoriesToShow(categoriesResult));
+      dispatch(setRecipesToShow(recipesResult));
+    };
+    fetchRecipes();
+  }, [pathname]);
 
   return (
     <main>
       { loading ? <span>carregando...</span> : (
-        <ul className={ styles.recipes }>
-          { recipes.reduce((recipesToShow, recipe, index) => {
-            if (index >= minIndex && index <= maxIndex) {
-              return [...recipesToShow, (
-                <li
-                  className={ styles.recipe_card }
-                  data-testid={ `${index}-recipe-card` }
-                  key={ index }
-                >
-                  <img
-                    src={
-                      recipe[(pathname === '/meals' ? 'strMealThumb' : 'strDrinkThumb')]
-                    }
-                    alt=""
-                    data-testid={ `${index}-card-img` }
-                  />
-                  <p data-testid={ `${index}-card-name` }>
-                    {recipe[(pathname === '/meals' ? 'strMeal' : 'strDrink')]}
-                  </p>
-                </li>
-              )];
-            } return recipesToShow;
-          }, []) }
-        </ul>
+        <>
+          <ul className={ styles.categories }>
+            <RecipesCategories />
+          </ul>
+          <ul className={ styles.recipes }>
+            <RecipesCards />
+          </ul>
+        </>
       ) }
     </main>
   );
 }
 
-export default Recipes;
+export default withRouter(Recipes);
