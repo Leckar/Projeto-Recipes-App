@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import fetchToSearch from '../utils/fetchToSearch';
-import { setRecipesToShow } from '../redux/actions';
+import { isFetchingRecipes, setRecipesToShow } from '../redux/actions';
 
 function SearchBar() {
   const [method, setMethod] = useState('');
@@ -18,6 +18,7 @@ function SearchBar() {
     if (method === 'firstLetter' && value.length > 1) {
       return global.alert('Your search must have only 1 (one) character');
     }
+    dispatch(isFetchingRecipes(true));
     const result = await fetchToSearch({ [method]: value }, type);
     if (!result) {
       return global.alert('Sorry, we haven\'t found any recipes for these filters.');
@@ -26,6 +27,7 @@ function SearchBar() {
     if (result.length === 1) {
       history.push(`/${type}/${result[0][(type === 'meals') ? 'idMeal' : 'idDrink']}`);
     }
+    dispatch(isFetchingRecipes(false));
   };
 
   return (
