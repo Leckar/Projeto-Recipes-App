@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, withRouter } from 'react-router-dom';
 import drinkIcon from '../images/drinkIcon.svg';
 import mealIcon from '../images/mealIcon.svg';
 import styles from './Footer.module.css';
@@ -25,14 +25,14 @@ function Footer() {
         data-testid="footer"
         className={ styles.footer }
       >
-        <Link to="/meals">
+        <Link to="/drinks">
           <img
             src={ drinkIcon }
             alt="Ícone de bebidas"
             data-testid="drinks-bottom-btn"
           />
         </Link>
-        <Link to="/drinks">
+        <Link to="/meals">
 
           <img
             src={ mealIcon }
@@ -42,8 +42,7 @@ function Footer() {
         </Link>
       </footer>
     );
-  }
-  return null;
+  } return null;
 }
 
-export default Footer;
+export default withRouter(Footer);
