@@ -1,4 +1,4 @@
-const DRINK_MOCK = {
+export const DRINK_MOCK = {
   drinks: [
     {
       idDrink: '11202',
@@ -162,4 +162,85 @@ const DRINK_MOCK = {
   ],
 };
 
-export default DRINK_MOCK;
+export const ONLY_ONE_DRINK = {
+  drinks: [
+    {
+      idDrink: '11202',
+      strDrink: 'Caipirinha',
+      strDrinkAlternate: null,
+      strTags: 'ContemporaryClassic,IBA',
+      strVideo: null,
+      strCategory: 'Ordinary Drink',
+      strIBA: 'Contemporary Classics',
+      strAlcoholic: 'Alcoholic',
+      strGlass: 'Old-fashioned glass',
+      strInstructions: 'Place lime and sugar into old fashioned glass and muddle (mash the two ingredients together using a muddler or a wooden spoon). Fill the glass with ice and add the Cachaça.',
+      strInstructionsES: null,
+      strInstructionsDE: 'Limette und Zucker in ein old-fashioned Glas geben und vermengen (die beiden Zutaten mit einem Mixer oder einem Holzlöffel vermengen). Füllen Sie das Glas mit Eis und geben Sie den Cacha dazu.',
+      strInstructionsFR: null,
+      strInstructionsIT: 'Mettere il lime e lo zucchero nel bicchiere vecchio stile e pestare (schiacciare i due ingredienti insieme usando un pestello o un cucchiaio di legno).Riempi il bicchiere di ghiaccio e aggiungi la Cachaça.',
+      'strInstructionsZH-HANS': null,
+      'strInstructionsZH-HANT': null,
+      strDrinkThumb: 'https://www.thecocktaildb.com/images/media/drink/jgvn7p1582484435.jpg',
+      strIngredient1: 'Sugar',
+      strIngredient2: 'Lime',
+      strIngredient3: 'Cachaca',
+      strIngredient4: null,
+      strIngredient5: null,
+      strIngredient6: null,
+      strIngredient7: null,
+      strIngredient8: null,
+      strIngredient9: null,
+      strIngredient10: null,
+      strIngredient11: null,
+      strIngredient12: null,
+      strIngredient13: null,
+      strIngredient14: null,
+      strIngredient15: null,
+      strMeasure1: '2 tsp',
+      strMeasure2: '1 ',
+      strMeasure3: '2 1/2 oz ',
+      strMeasure4: null,
+      strMeasure5: null,
+      strMeasure6: null,
+      strMeasure7: null,
+      strMeasure8: null,
+      strMeasure9: null,
+      strMeasure10: null,
+      strMeasure11: null,
+      strMeasure12: null,
+      strMeasure13: null,
+      strMeasure14: null,
+      strMeasure15: null,
+      strImageSource: 'https://www.thecocktaildb.com/drink/11202-Caipirinha',
+      strImageAttribution: 'TheCocktailDB.com',
+      strCreativeCommonsConfirmed: 'Yes',
+      dateModified: '2016-07-21 09:42:01',
+    },
+  ],
+};
+
+export const FILTER_BY_INGREDIENT_DRINK = {
+  drinks: [
+    {
+      strDrink: 'Abbey Cocktail',
+      strDrinkThumb: 'https://www.thecocktaildb.com/images/media/drink/mr30ob1582479875.jpg',
+      idDrink: '17834',
+    },
+    {
+      strDrink: 'Bleeding Surgeon',
+      strDrinkThumb: 'https://www.thecocktaildb.com/images/media/drink/usuvvr1472719118.jpg',
+      idDrink: '16295',
+    },
+    {
+      strDrink: 'Caribbean Orange Liqueur',
+      strDrinkThumb: 'https://www.thecocktaildb.com/images/media/drink/qwxuwy1472667570.jpg',
+      idDrink: '12796',
+    },
+    {
+      strDrink: 'Mango Orange Smoothie',
+      strDrinkThumb: 'https://www.thecocktaildb.com/images/media/drink/vdp2do1487603520.jpg',
+      idDrink: '12716',
+    },
+  ],
+};
