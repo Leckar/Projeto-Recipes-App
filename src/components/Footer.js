@@ -30,6 +30,7 @@ function Footer() {
             src={ drinkIcon }
             alt="Ícone de bebidas"
             data-testid="drinks-bottom-btn"
+            className={ styles.footerIcon }
           />
         </Link>
         <Link to="/meals">
@@ -38,6 +39,7 @@ function Footer() {
             src={ mealIcon }
             alt="Ícone de refeições"
             data-testid="meals-bottom-btn"
+            className={ styles.footerIcon }
           />
         </Link>
       </footer>
