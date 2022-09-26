@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useHistory, withRouter } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIconTopBtn from '../images/searchIcon.svg';
+import SearchBar from './SearchBar';
 
 const PATHNAMES = ['/meals', '/drinks', '/profile', '/done-recipes', '/favorite-recipes'];
 const LAST_CHARACTER = -1;
@@ -41,7 +42,7 @@ function Header() {
             <img data-testid="search-top-btn" src={ searchIconTopBtn } alt="icone" />
           </button>
         )}
-        { isSearching && (<input data-testid="search-input" />) }
+        { isSearching && (<SearchBar />) }
       </header>
     );
   } return null;
