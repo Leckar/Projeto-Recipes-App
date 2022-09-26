@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './Pages/Login';
 import Recipes from './Pages/Recipes';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route exact path="/done-recipes" />
         <Route exact path="/favorite-recipes" />
       </Switch>
+      <Footer />
     </div>
   );
 }
