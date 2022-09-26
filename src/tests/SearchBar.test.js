@@ -10,6 +10,7 @@ const SEARCH_BUTTON = 'search-top-btn';
 const SEARCH_INPUT = 'search-input';
 const NAME_SEARCH_RADIO = 'name-search-radio';
 const EXEC_SEARCH_BUTTON = 'exec-search-btn';
+const FIRST_LETTER_BUTTON = 'first-letter-search-radio';
 
 describe('Teste se a SearchBar para Drinks está funcionando corretamente', () => {
   beforeEach(() => {
@@ -37,7 +38,7 @@ describe('Teste se a SearchBar para Drinks está funcionando corretamente', () =
 
     userEvent.click(screen.getByTestId(SEARCH_BUTTON));
     userEvent.type(screen.getByTestId(SEARCH_INPUT), 'ca');
-    userEvent.click(screen.getByTestId('first-letter-search-radio'));
+    userEvent.click(screen.getByTestId(FIRST_LETTER_BUTTON));
     userEvent.click(screen.getByTestId(EXEC_SEARCH_BUTTON));
 
     await waitFor(() => expect(window.alert).toHaveBeenCalled());
@@ -49,7 +50,7 @@ describe('Teste se a SearchBar para Drinks está funcionando corretamente', () =
 
     userEvent.click(screen.getByTestId(SEARCH_BUTTON));
     userEvent.type(screen.getByTestId(SEARCH_INPUT), 'c');
-    userEvent.click(screen.getByTestId('first-letter-search-radio'));
+    userEvent.click(screen.getByTestId(FIRST_LETTER_BUTTON));
     userEvent.click(screen.getByTestId(EXEC_SEARCH_BUTTON));
 
     await waitForElementToBeRemoved(screen.getByText(/carregando.../i), 500);
@@ -133,7 +134,7 @@ describe('Teste se a SearchBar para Meals está funcionando corretamente', () =>
 
     userEvent.click(screen.getByTestId(SEARCH_BUTTON));
     userEvent.type(screen.getByTestId(SEARCH_INPUT), 'r');
-    userEvent.click(screen.getByTestId('first-letter-search-radio'));
+    userEvent.click(screen.getByTestId(FIRST_LETTER_BUTTON));
     userEvent.click(screen.getByTestId(EXEC_SEARCH_BUTTON));
 
     await waitForElementToBeRemoved(screen.getByText(/carregando.../i), 500);
