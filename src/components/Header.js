@@ -3,6 +3,7 @@ import { Link, useHistory, withRouter } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIconTopBtn from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
+import styles from './Header.module.css';
 
 const PATHNAMES = ['/meals', '/drinks', '/profile', '/done-recipes', '/favorite-recipes'];
 const LAST_CHARACTER = -1;
@@ -31,18 +32,23 @@ function Header() {
 
   if (isRendering) {
     return (
-      <header>
-        <h1 data-testid="page-title">
+      <header className={ styles.container }>
+        <div className={ styles.top_header }>
+          <h1>RECIPES app</h1>
+          <div>
+            <Link to="/profile">
+              <img data-testid="profile-top-btn" src={ profileIcon } alt="icone" />
+            </Link>
+            {(['/meals', '/drinks'].includes(pathname)) && (
+              <button onClick={ handleSearch } data-testid="search-button" type="button">
+                <img data-testid="search-top-btn" src={ searchIconTopBtn } alt="icone" />
+              </button>
+            )}
+          </div>
+        </div>
+        <h2 data-testid="page-title">
           {title}
-        </h1>
-        <Link to="/profile">
-          <img data-testid="profile-top-btn" src={ profileIcon } alt="icone" />
-        </Link>
-        {(['/meals', '/drinks'].includes(pathname)) && (
-          <button onClick={ handleSearch } data-testid="search-button" type="button">
-            <img data-testid="search-top-btn" src={ searchIconTopBtn } alt="icone" />
-          </button>
-        )}
+        </h2>
         { isSearching && (<SearchBar />) }
       </header>
     );
