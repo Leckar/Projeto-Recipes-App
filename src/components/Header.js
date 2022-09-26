@@ -16,6 +16,7 @@ function Header() {
   useEffect(() => {
     if (PATHNAMES.includes(pathname)) {
       setIsRendering(true);
+      setIsSearching(false);
     } else {
       setIsRendering(false);
     }
