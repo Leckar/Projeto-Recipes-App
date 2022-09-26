@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styles from '../Pages/Recipes.module.css';
@@ -8,8 +8,8 @@ const START_MAX_INDEX = 4;
 
 function RecipesCards() {
   const { location: { pathname } } = useHistory();
-  const [minIndex, setMinIndex] = useState(0);
-  const [maxIndex, setMaxIndex] = useState(START_MAX_INDEX);
+  // const [minIndex, setMinIndex] = useState(0);
+  // const [maxIndex, setMaxIndex] = useState(START_MAX_INDEX);
   const categories = useSelector((state) => state.recipes.categories);
   const dispatch = useDispatch();
 
@@ -41,7 +41,7 @@ function RecipesCards() {
       </li>
       {
         categories.reduce((categoriesToShow, category, index) => {
-          if (index >= minIndex && index <= maxIndex) {
+          if (index >= 0 && index <= START_MAX_INDEX) {
             return [...categoriesToShow, (
               <li
                 className={ styles.recipe_card }
