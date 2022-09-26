@@ -4,8 +4,20 @@
   flex-shrink: 0;
   margin-top: auto;
   align-items: center;
-  background-color: rgb(255, 174, 174);
+  background-color: rgb(102, 171, 244);
   display: flex;
   justify-content: space-between;
   width: 100%;
+  padding: 2px;
+}
+
+.footerIcon {
+  border: 2px solid  rgb(102, 171, 244);
+  margin: 0;
+  padding: 5%;
+  border-radius: 10px;
+} 
+.footerIcon:hover {
+  border: aliceblue solid 2px;
+  background-color:  rgb(0, 171, 244);
 }
