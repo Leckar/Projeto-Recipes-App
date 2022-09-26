@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import fetchToSearch from '../utils/fetchToSearch';
 import { isFetchingRecipes, setRecipesToShow } from '../redux/actions';
+import styles from './SearchBar.module.css';
 
 function SearchBar() {
   const [method, setMethod] = useState('');
@@ -31,45 +32,47 @@ function SearchBar() {
   };
 
   return (
-    <div>
+    <div className={ styles.container }>
       <input
         data-testid="search-input"
         onChange={ handleSearchInput }
         value={ value }
       />
-      <label htmlFor="search-by-ingredient">
-        Ingredient
-        <input
-          type="radio"
-          name="search_by"
-          id="search-by-ingredient"
-          data-testid="ingredient-search-radio"
-          value="ingredient"
-          onClick={ handleSearchMethod }
-        />
-      </label>
-      <label htmlFor="search-by-name">
-        Name
-        <input
-          type="radio"
-          name="search_by"
-          id="search-by-name"
-          data-testid="name-search-radio"
-          value="name"
-          onClick={ handleSearchMethod }
-        />
-      </label>
-      <label htmlFor="search-by-first-letter">
-        First letter
-        <input
-          type="radio"
-          name="search_by"
-          id="search-by-first-letter"
-          data-testid="first-letter-search-radio"
-          value="firstLetter"
-          onClick={ handleSearchMethod }
-        />
-      </label>
+      <div>
+        <label htmlFor="search-by-ingredient">
+          Ingredient
+          <input
+            type="radio"
+            name="search_by"
+            id="search-by-ingredient"
+            data-testid="ingredient-search-radio"
+            value="ingredient"
+            onClick={ handleSearchMethod }
+          />
+        </label>
+        <label htmlFor="search-by-name">
+          Name
+          <input
+            type="radio"
+            name="search_by"
+            id="search-by-name"
+            data-testid="name-search-radio"
+            value="name"
+            onClick={ handleSearchMethod }
+          />
+        </label>
+        <label htmlFor="search-by-first-letter">
+          First letter
+          <input
+            type="radio"
+            name="search_by"
+            id="search-by-first-letter"
+            data-testid="first-letter-search-radio"
+            value="firstLetter"
+            onClick={ handleSearchMethod }
+          />
+        </label>
+      </div>
       <button
         type="button"
         data-testid="exec-search-btn"

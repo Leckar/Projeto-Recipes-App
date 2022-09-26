@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import styles from './Recipes.module.css';
 
 const START_MAX_INDEX = 11;
 
@@ -19,11 +20,15 @@ function Recipes() {
   return (
     <main>
       { loading ? <span>carregando...</span> : (
-        <ul>
+        <ul className={ styles.recipes }>
           { recipes.reduce((recipesToShow, recipe, index) => {
             if (index >= minIndex && index <= maxIndex) {
               return [...recipesToShow, (
-                <li data-testid={ `${index}-recipe-card` } key={ index }>
+                <li
+                  className={ styles.recipe_card }
+                  data-testid={ `${index}-recipe-card` }
+                  key={ index }
+                >
                   <img
                     src={
                       recipe[(pathname === '/meals' ? 'strMealThumb' : 'strDrinkThumb')]
@@ -31,9 +36,9 @@ function Recipes() {
                     alt=""
                     data-testid={ `${index}-card-img` }
                   />
-                  <h3 data-testid={ `${index}-card-name` }>
+                  <p data-testid={ `${index}-card-name` }>
                     {recipe[(pathname === '/meals' ? 'strMeal' : 'strDrink')]}
-                  </h3>
+                  </p>
                 </li>
               )];
             } return recipesToShow;

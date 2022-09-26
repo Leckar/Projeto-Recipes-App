@@ -1,0 +1,20 @@
+.recipes {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1vh;
+  height: 60%;
+  list-style: none;
+  overflow: scroll;
+}
+
+.recipe_card {
+  height: 166px;
+  margin-bottom: 1vh;
+  width: 163px;
+}
+
+.recipe_card img {
+  height: 135px;
+  width: 163px;
+}

@@ -1,0 +1,13 @@
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.top_header {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
