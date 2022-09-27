@@ -23,7 +23,6 @@ export default function Login() {
     const emailIsValid = validEmail.test(email);
     const valid = password.length > lengthValid && emailIsValid;
     setDisabled(!valid);
-    console.log(isDisabled);
   };
 
   useEffect(() => {
