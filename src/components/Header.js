@@ -1,13 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory, withRouter } from 'react-router-dom';
-import profileIcon from '../images/profileIcon.svg';
+import profileIconHeader from '../images/profileIconHeader.svg';
 import searchIconTopBtn from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
 import styles from './Header.module.css';
 import logo from '../images/headerLogo.svg';
+import mealIcon from '../images/mealIcon.svg';
+import drinkIcon from '../images/drinkIcon.svg';
+import profileIcon from '../images/profileIcon.svg';
+import doneIcon from '../images/doneIcon.svg';
+import favoriteIcon from '../images/favoriteIcon.svg';
 
 const PATHNAMES = ['/meals', '/drinks', '/profile', '/done-recipes', '/favorite-recipes'];
 const LAST_CHARACTER = -1;
+
+const USE_ICON = {
+  '/meals': mealIcon,
+  '/drinks': drinkIcon,
+  '/profile': profileIcon,
+  '/done-recipes': doneIcon,
+  '/favorite-recipes': favoriteIcon,
+};
 
 function Header() {
   const history = useHistory();
@@ -54,14 +67,19 @@ function Header() {
               </button>
             )}
             <Link to="/profile">
-              <img data-testid="profile-top-btn" src={ profileIcon } alt="icone" />
+              <img data-testid="profile-top-btn" src={ profileIconHeader } alt="icone" />
             </Link>
           </div>
         </section>
-        <h2 data-testid="page-title">
-          {title}
-        </h2>
-        { isSearching && (<SearchBar />) }
+        <section className={ styles.foot_header }>
+          <div className={ styles.title_container }>
+            <img src={ USE_ICON[pathname] } alt="page logo" />
+            <h2 data-testid="page-title">
+              {title}
+            </h2>
+          </div>
+          { isSearching && (<SearchBar />) }
+        </section>
       </header>
     );
   } return null;

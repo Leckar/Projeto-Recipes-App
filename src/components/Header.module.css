@@ -57,3 +57,19 @@
   display: flex;
   gap: 0.5vh;
 }
+
+.foot_header {
+  display: flex;
+  flex-direction: column;
+  padding: 2vh;
+  width: 100%;
+}
+
+.title_container {
+  align-items: center;
+  color: var(--purple);
+  display: flex;
+  flex-direction: column;
+  font-weight: 800;
+  gap: 1.2vh;
+}

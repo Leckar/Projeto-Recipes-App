@@ -3,7 +3,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1vh;
-  height: 60%;
+  height: 400px;
   list-style: none;
   overflow: scroll;
 }
