@@ -30,7 +30,7 @@ describe('Testa se o Login possui inputs para o email e password', () => {
     expect(history.location.pathname).toBe('/favorite-recipes');
   });
   test('Se o botão Logout funciona corretamente', () => {
-    localStorage.setItem('user', JSON.stringify({ email }));
+    localStorage.clear();
     const { history } = renderWith(<App />, '/profile');
 
     const logoutBtn = screen.getByTestId('profile-logout-btn');
