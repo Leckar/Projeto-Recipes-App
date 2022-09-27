@@ -36,9 +36,11 @@ function SearchBar() {
         data-testid="search-input"
         onChange={ handleSearchInput }
         value={ value }
+        className={ styles.search_input }
+        placeholder="Search"
       />
-      <div>
-        <label htmlFor="search-by-ingredient">
+      <div className={ styles.search_types }>
+        <label className={ styles.search_type } htmlFor="search-by-ingredient">
           Ingredient
           <input
             type="radio"
@@ -49,7 +51,7 @@ function SearchBar() {
             onClick={ handleSearchMethod }
           />
         </label>
-        <label htmlFor="search-by-name">
+        <label className={ styles.search_type } htmlFor="search-by-name">
           Name
           <input
             type="radio"
@@ -60,7 +62,7 @@ function SearchBar() {
             onClick={ handleSearchMethod }
           />
         </label>
-        <label htmlFor="search-by-first-letter">
+        <label className={ styles.search_type } htmlFor="search-by-first-letter">
           First letter
           <input
             type="radio"
@@ -76,8 +78,9 @@ function SearchBar() {
         type="button"
         data-testid="exec-search-btn"
         onClick={ handleSearch }
+        className={ styles.search_button }
       >
-        Search
+        SEARCH
       </button>
     </div>
   );

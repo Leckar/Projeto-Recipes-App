@@ -1,13 +1,75 @@
+:root {
+
+  --purple: #41197f;
+
+  --yellow: #fcdc36;
+}
+
 .container {
   align-items: center;
   display: flex;
   flex-direction: column;
+  font-family: Epilogue , sans-serif;
 }
 
 .top_header {
   align-items: center;
-  background-color: white;
+  background-color: var(--yellow);
+  color: var(--purple);
   display: flex;
-  justify-content: space-around;
+  height: 52px;
+  justify-content: space-between;
+  padding: 0 2vh;
   width: 100%;
+}
+
+.logo_container {
+  align-items: center;
+  display: flex;
+  gap: 2vh;
+  justify-content: center;
+}
+
+.text_container {
+  align-items: baseline;
+  display: flex;
+  gap: 0.4vh;
+}
+
+.main_text {
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.4vh;
+}
+
+.second_text {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.top_header_icon {
+  background-color: transparent;
+  border: none;
+}
+
+.buttons_container {
+  display: flex;
+  gap: 0.5vh;
+}
+
+.foot_header {
+  display: flex;
+  flex-direction: column;
+  padding: 2vh;
+  width: 100%;
+}
+
+.title_container {
+  align-items: center;
+  color: var(--purple);
+  display: flex;
+  flex-direction: column;
+  font-weight: 800;
+  gap: 1.2vh;
 }

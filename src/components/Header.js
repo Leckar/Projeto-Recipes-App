@@ -1,12 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory, withRouter } from 'react-router-dom';
-import profileIcon from '../images/profileIcon.svg';
+import profileIconHeader from '../images/profileIconHeader.svg';
 import searchIconTopBtn from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
 import styles from './Header.module.css';
+import logo from '../images/headerLogo.svg';
+import mealIcon from '../images/mealIcon.svg';
+import drinkIcon from '../images/drinkIcon.svg';
+import profileIcon from '../images/profileIcon.svg';
+import doneIcon from '../images/doneIcon.svg';
+import favoriteIcon from '../images/favoriteIcon.svg';
 
 const PATHNAMES = ['/meals', '/drinks', '/profile', '/done-recipes', '/favorite-recipes'];
 const LAST_CHARACTER = -1;
+
+const USE_ICON = {
+  '/meals': mealIcon,
+  '/drinks': drinkIcon,
+  '/profile': profileIcon,
+  '/done-recipes': doneIcon,
+  '/favorite-recipes': favoriteIcon,
+};
 
 function Header() {
   const history = useHistory();
@@ -33,23 +47,39 @@ function Header() {
   if (isRendering) {
     return (
       <header className={ styles.container }>
-        <div className={ styles.top_header }>
-          <h1>RECIPES app</h1>
-          <div>
-            <Link to="/profile">
-              <img data-testid="profile-top-btn" src={ profileIcon } alt="icone" />
-            </Link>
+        <section className={ styles.top_header }>
+          <div className={ styles.logo_container }>
+            <img src={ logo } alt="logo" />
+            <div className={ styles.text_container }>
+              <span className={ styles.main_text }>RECIPES</span>
+              <span className={ styles.second_text }>app</span>
+            </div>
+          </div>
+          <div className={ styles.buttons_container }>
             {(['/meals', '/drinks'].includes(pathname)) && (
-              <button onClick={ handleSearch } data-testid="search-button" type="button">
+              <button
+                onClick={ handleSearch }
+                data-testid="search-button"
+                type="button"
+                className={ styles.top_header_icon }
+              >
                 <img data-testid="search-top-btn" src={ searchIconTopBtn } alt="icone" />
               </button>
             )}
+            <Link to="/profile">
+              <img data-testid="profile-top-btn" src={ profileIconHeader } alt="icone" />
+            </Link>
           </div>
-        </div>
-        <h2 data-testid="page-title">
-          {title}
-        </h2>
-        { isSearching && (<SearchBar />) }
+        </section>
+        <section className={ styles.foot_header }>
+          <div className={ styles.title_container }>
+            <img src={ USE_ICON[pathname] } alt="page logo" />
+            <h2 data-testid="page-title">
+              {title}
+            </h2>
+          </div>
+          { isSearching && (<SearchBar />) }
+        </section>
       </header>
     );
   } return null;
