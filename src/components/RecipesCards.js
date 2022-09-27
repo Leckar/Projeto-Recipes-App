@@ -14,7 +14,6 @@ function RecipesCards() {
   return (
     recipes.reduce((recipesToShow, recipe, index) => {
       if (index >= 0 && index <= START_MAX_INDEX) {
-        console.log(recipe);
         return [...recipesToShow, (
           <li
             className={ styles.recipe_card }
