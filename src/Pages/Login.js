@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import styles from './Login.module.css';
+import logo from '../images/recipesappLogo.svg';
 
 export default function Login() {
   const history = useHistory();
@@ -29,31 +31,39 @@ export default function Login() {
   }, [email, password]);
 
   return (
-    <div>
-      <form onSubmit={ handleClick }>
+    <main className={ styles.container }>
+      <div className={ styles.logo_container }>
+        <img className={ styles.logo_image } src={ logo } alt="logo" />
+      </div>
+      <form className={ styles.form_container } onSubmit={ handleClick }>
+        <p>LOGIN</p>
         <input
           name="email"
           type="email"
           data-testid="email-input"
           value={ email }
-          placeholder="Digite seu e-mail"
+          placeholder="Email"
           onChange={ ({ target }) => setEmail(target.value) }
+          className={ styles.form_input }
         />
         <input
           name="password"
           type="password"
-          value={ password }
           data-testid="password-input"
+          value={ password }
+          placeholder="Password"
           onChange={ ({ target }) => setPassword(target.value) }
+          className={ styles.form_input }
         />
         <button
           type="submit"
           data-testid="login-submit-btn"
           disabled={ isDisabled }
+          className={ styles.form_button }
         >
-          Enter
+          ENTER
         </button>
       </form>
-    </div>
+    </main>
   );
 }
