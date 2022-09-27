@@ -31,15 +31,13 @@ function Recipes() {
 
   return (
     <main>
+      <ul className={ styles.categories }>
+        <RecipesCategories />
+      </ul>
       { loading ? <span>carregando...</span> : (
-        <>
-          <ul className={ styles.categories }>
-            <RecipesCategories />
-          </ul>
-          <ul className={ styles.recipes }>
-            <RecipesCards />
-          </ul>
-        </>
+        <ul className={ styles.recipes }>
+          <RecipesCards />
+        </ul>
       ) }
     </main>
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styles from '../Pages/Recipes.module.css';
@@ -10,15 +10,17 @@ function RecipesCards() {
   const { location: { pathname } } = useHistory();
   // const [minIndex, setMinIndex] = useState(0);
   // const [maxIndex, setMaxIndex] = useState(START_MAX_INDEX);
+  const [prevFilter, setPrevFilter] = useState('');
   const categories = useSelector((state) => state.recipes.categories);
   const dispatch = useDispatch();
 
-  const handleCategory = async ({ target }) => {
+  const handleCategory = async ({ target: { name } }) => {
     const type = pathname.slice(1);
     const url = () => {
-      if (target.name === 'All') return `https://www.${type === 'meals' ? 'themealdb' : 'thecocktaildb'}.com/api/json/v1/1/search.php?s=`;
-      return `https://www.${type === 'meals' ? 'themealdb' : 'thecocktaildb'}.com/api/json/v1/1/filter.php?c=${target.name}`;
+      if (name === 'All' || prevFilter === name) return `https://www.${type === 'meals' ? 'themealdb' : 'thecocktaildb'}.com/api/json/v1/1/search.php?s=`;
+      return `https://www.${type === 'meals' ? 'themealdb' : 'thecocktaildb'}.com/api/json/v1/1/filter.php?c=${name}`;
     };
+    setPrevFilter(name);
     dispatch(isFetchingRecipes());
     const response = await fetch(url());
     const { [type]: result } = await response.json();
