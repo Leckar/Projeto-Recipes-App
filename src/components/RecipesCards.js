@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import styles from '../Pages/Recipes.module.css';
 
 const START_MAX_INDEX = 11;
@@ -14,22 +14,28 @@ function RecipesCards() {
   return (
     recipes.reduce((recipesToShow, recipe, index) => {
       if (index >= 0 && index <= START_MAX_INDEX) {
+        console.log(recipe);
         return [...recipesToShow, (
           <li
             className={ styles.recipe_card }
             data-testid={ `${index}-recipe-card` }
             key={ index }
           >
-            <img
-              src={
-                recipe[(pathname === '/meals' ? 'strMealThumb' : 'strDrinkThumb')]
-              }
-              alt=""
-              data-testid={ `${index}-card-img` }
-            />
-            <p data-testid={ `${index}-card-name` }>
-              {recipe[(pathname === '/meals' ? 'strMeal' : 'strDrink')]}
-            </p>
+            <Link
+              to={ `${pathname}/${
+                pathname === '/meals' ? recipe.idMeal : recipe.idDrink}` }
+            >
+              <img
+                src={
+                  recipe[(pathname === '/meals' ? 'strMealThumb' : 'strDrinkThumb')]
+                }
+                alt=""
+                data-testid={ `${index}-card-img` }
+              />
+              <p data-testid={ `${index}-card-name` }>
+                {recipe[(pathname === '/meals' ? 'strMeal' : 'strDrink')]}
+              </p>
+            </Link>
           </li>
         )];
       } return recipesToShow;
