@@ -1,3 +1,32 @@
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  width: 100%;
+}
+
 .image {
+  width: 100px;
+}
+
+.recommendations {
+  display: flex;
+  gap: 2vh;
+  list-style: none;
+  overflow: scroll;
+  padding: 0;
+  width: 70%;
+}
+
+.recommendation {
+  width: 50%;
+}
+
+.recommendation button {
+  width: 100%;
+}
+
+.recommendation button img {
   width: 100px;
 }
