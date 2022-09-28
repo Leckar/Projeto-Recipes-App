@@ -34,7 +34,10 @@
 
 .recipe_card a p {
   color: black;
+  height: 2.8vh;
+  overflow: hidden;
   padding-left: 1vh;
+  text-overflow: ellipsis;
 }
 
 .categories {
