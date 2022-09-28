@@ -2,6 +2,7 @@ export const REQUEST_USER = 'REQUEST_USER';
 export const RECIPES_TO_SHOW = 'RECIPES_TO_SHOW';
 export const IS_FETCHING_RECIPES = 'IS_FETCHING_RECIPES';
 export const CATEGORIES_TO_SHOW = 'CATEGORIES_TO_SHOW';
+export const SET_RECIPE_DETAILS = 'SET_RECIPE_DETAILS';
 
 export const requestUser = (payload) => ({
   type: REQUEST_USER,
@@ -19,5 +20,10 @@ export const setRecipesToShow = (payload) => ({
 
 export const setCategoriesToShow = (payload) => ({
   type: CATEGORIES_TO_SHOW,
+  payload,
+});
+
+export const setRecipeDetails = (payload) => ({
+  type: SET_RECIPE_DETAILS,
   payload,
 });

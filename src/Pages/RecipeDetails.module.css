@@ -30,3 +30,8 @@
 .recommendation button img {
   width: 100px;
 }
+
+.start_button {
+  bottom: 0;
+  position: fixed;
+}

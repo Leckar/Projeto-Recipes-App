@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, withRouter } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setRecipeDetails } from '../redux/actions';
 import fetchRecipeDetails from '../utils/fetchRecipeDetails';
 import fetchToRecipes from '../utils/fetchToRecipes';
 import styles from './RecipeDetails.module.css';
@@ -10,6 +12,7 @@ function RecipeDetails() {
   const [loading, setLoading] = useState(true);
   const [recommendedRecipes, setRecommendedRecipes] = useState([]);
   const [recommendedRecipe, setRecommendedRecipe] = useState({});
+  const dispatch = useDispatch();
 
   const recipeInfo = history.location.pathname.split('/');
   const recomendedArrayLength = 6;
@@ -43,6 +46,11 @@ function RecipeDetails() {
   const handleRecomended = (recipe) => {
     setRecommendedRecipe(recipe);
     setLoading(true);
+  };
+
+  const handleStartRecipe = () => {
+    dispatch(setRecipeDetails(details));
+    history.push(`${history.location.pathname}/in-progress`);
   };
 
   return (
@@ -119,6 +127,14 @@ function RecipeDetails() {
               </li>
             )) }
           </ul>
+          <button
+            type="button"
+            data-testid="start-recipe-btn"
+            onClick={ handleStartRecipe }
+            className={ styles.start_button }
+          >
+            Start Recipe
+          </button>
         </>
       ) }
     </main>
