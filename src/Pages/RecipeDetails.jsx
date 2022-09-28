@@ -5,6 +5,9 @@ import { setRecipeDetails } from '../redux/actions';
 import fetchRecipeDetails from '../utils/fetchRecipeDetails';
 import fetchToRecipes from '../utils/fetchToRecipes';
 import styles from './RecipeDetails.module.css';
+import shareIcon from '../images/shareIcon.svg';
+
+const copy = require('clipboard-copy');
 
 function RecipeDetails() {
   const history = useHistory();
@@ -14,6 +17,7 @@ function RecipeDetails() {
   const [recommendedRecipe, setRecommendedRecipe] = useState({});
   const [isDone, setIsDone] = useState(false);
   const [inProgress, setInProgress] = useState(false);
+  const [wasCopied, setWasCopied] = useState(false);
   const dispatch = useDispatch();
 
   const recipeInfo = history.location.pathname.split('/');
@@ -66,6 +70,11 @@ function RecipeDetails() {
     history.push(`${history.location.pathname}/in-progress`);
   };
 
+  const handleShare = () => {
+    setWasCopied(true);
+    copy(window.location.href);
+  };
+
   return (
     <main className={ styles.container }>
       { loading ? <span>carregando...</span> : (
@@ -86,6 +95,15 @@ function RecipeDetails() {
           <p data-testid="recipe-category">
             { recipeInfo[1] === 'meals' ? details.strCategory : details.strAlcoholic }
           </p>
+          <button
+            type="button"
+            data-testid="share-btn"
+            onClick={ handleShare }
+          >
+            <img src={ shareIcon } alt="" />
+          </button>
+          { wasCopied && <span>Link copied!</span> }
+          <button type="button" data-testid="favorite-btn">Favorite</button>
           <ul>
             { Object.entries(details).reduce((ingredients, detail, index) => {
               if (detail[0].includes('strIngredient')) {
