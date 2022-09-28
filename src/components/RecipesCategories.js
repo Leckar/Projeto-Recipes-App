@@ -33,13 +33,11 @@ const categoryIcon = {
 
 function RecipesCards() {
   const { location: { pathname } } = useHistory();
-  // const [minIndex, setMinIndex] = useState(0);
-  // const [maxIndex, setMaxIndex] = useState(START_MAX_INDEX);
   const [prevFilter, setPrevFilter] = useState('');
   const categories = useSelector((state) => state.recipes.categories);
   const dispatch = useDispatch();
 
-  const handleCategory = async ({ target: { name } }) => {
+  const handleCategory = async (name) => {
     const type = pathname.slice(1);
     const url = () => {
       if (name === 'All' || prevFilter === name) return `https://www.${type === 'meals' ? 'themealdb' : 'thecocktaildb'}.com/api/json/v1/1/search.php?s=`;
@@ -59,9 +57,8 @@ function RecipesCards() {
       >
         <button
           type="button"
-          name="All"
           data-testid="All-category-filter"
-          onClick={ handleCategory }
+          onClick={ () => handleCategory('All') }
         >
           <img src={ pathname === '/meals' ? allMealsIcon : allDrinksIcon } alt="" />
           <span>All</span>
@@ -77,9 +74,8 @@ function RecipesCards() {
               >
                 <button
                   type="button"
-                  name={ category.strCategory }
                   data-testid={ `${category.strCategory}-category-filter` }
-                  onClick={ handleCategory }
+                  onClick={ () => handleCategory(category.strCategory) }
                 >
                   <img src={ categoryIcon[category.strCategory] } alt="" />
                   <span>{ category.strCategory }</span>
