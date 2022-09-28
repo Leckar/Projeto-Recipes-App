@@ -9,6 +9,8 @@ import shareIcon from '../images/shareIcon.svg';
 
 const copy = require('clipboard-copy');
 
+const LAST_CHARACTER = -1;
+
 function RecipeDetails() {
   const history = useHistory();
   const [details, setDetails] = useState({});
@@ -18,6 +20,7 @@ function RecipeDetails() {
   const [isDone, setIsDone] = useState(false);
   const [inProgress, setInProgress] = useState(false);
   const [wasCopied, setWasCopied] = useState(false);
+  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const dispatch = useDispatch();
 
   const recipeInfo = history.location.pathname.split('/');
@@ -32,6 +35,8 @@ function RecipeDetails() {
   }, [loading, recommendedRecipe]);
 
   useEffect(() => {
+    const lastFavoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    if (lastFavoriteRecipes) setFavoriteRecipes(lastFavoriteRecipes);
     const getDetails = async () => {
       const result = await fetchRecipeDetails(recipeInfo[1], recipeInfo[2]);
       setDetails({ ...result });
@@ -75,6 +80,20 @@ function RecipeDetails() {
     copy(window.location.href);
   };
 
+  const handleFavorite = () => {
+    const recipe = {
+      id: recipeInfo[1] === 'meals' ? details.idMeal : details.idDrink,
+      type: recipeInfo[1].slice(0, LAST_CHARACTER),
+      nationality: recipeInfo[1] === 'meals' ? details.strArea : '',
+      category: details.strCategory,
+      alcoholicOrNot: recipeInfo[1] === 'meals' ? '' : details.strAlcoholic,
+      name: recipeInfo[1] === 'meals' ? details.strMeal : details.strDrink,
+      image: recipeInfo[1] === 'meals' ? details.strMealThumb : details.strDrinkThumb,
+    };
+    const newFavoriteRecipes = [...favoriteRecipes, recipe];
+    localStorage.setItem('favoriteRecipes', JSON.stringify(newFavoriteRecipes));
+  };
+
   return (
     <main className={ styles.container }>
       { loading ? <span>carregando...</span> : (
@@ -103,7 +122,13 @@ function RecipeDetails() {
             <img src={ shareIcon } alt="" />
           </button>
           { wasCopied && <span>Link copied!</span> }
-          <button type="button" data-testid="favorite-btn">Favorite</button>
+          <button
+            type="button"
+            data-testid="favorite-btn"
+            onClick={ handleFavorite }
+          >
+            Favorite
+          </button>
           <ul>
             { Object.entries(details).reduce((ingredients, detail, index) => {
               if (detail[0].includes('strIngredient')) {
