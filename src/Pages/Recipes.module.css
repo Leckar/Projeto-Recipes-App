@@ -3,23 +3,72 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1vh;
-  height: 400px;
+  height: 65vh;
+  justify-content: center;
   list-style: none;
   overflow: scroll;
+  padding: 0;
+  width: 100%;
 }
 
 .recipe_card {
+  border: 1px solid rgb(190, 190, 190);
+  border-radius: 5px;
   height: 166px;
   margin-bottom: 1vh;
   width: 163px;
 }
 
-.recipe_card img {
+.recipe_card a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3vh;
+  text-decoration: none;
+}
+
+.recipe_card a img {
+  border-radius: 5px 5px 0 0;
   height: 135px;
   width: 163px;
 }
 
+.recipe_card a p {
+  color: black;
+  padding-left: 1vh;
+}
+
 .categories {
   display: flex;
+  justify-content: space-around;
   list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.category {
+  align-items: center;
+  display: flex;
+  height: 7vh;
+  justify-content: center;
+  padding: 0;
+  width: 5vh;
+}
+
+.category button {
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 5vh;
+}
+
+.category button img {
+  height: 5vh;
+}
+
+.category button span {
+  font-size: 0.5rem;
+  word-wrap: break-word;
 }
