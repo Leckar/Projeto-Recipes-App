@@ -1,10 +1,35 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import styles from '../Pages/Recipes.module.css';
 import { isFetchingRecipes, setRecipesToShow } from '../redux/actions';
+import allMealsIcon from '../images/allMealsIcon.svg';
+import allDrinksIcon from '../images/allDrinksIcon.svg';
+import beefIcon from '../images/beefIcon.svg';
+import breakfastIcon from '../images/breakfastIcon.svg';
+import chickenIcon from '../images/chickenIcon.svg';
+import dessertIcon from '../images/dessertIcon.svg';
+import lambIcon from '../images/lambIcon.svg';
+import ordinaryDrinksIcon from '../images/ordinaryDrinksIcon.svg';
+import cocktailIcon from '../images/cocktailIcon.svg';
+import shakeIcon from '../images/shakeIcon.svg';
+import otherIcon from '../images/otherIcon.svg';
+import cocoaIcon from '../images/cocoaIcon.svg';
+import styles from '../Pages/Recipes.module.css';
 
 const START_MAX_INDEX = 4;
+
+const categoryIcon = {
+  Beef: beefIcon,
+  Breakfast: breakfastIcon,
+  Chicken: chickenIcon,
+  Dessert: dessertIcon,
+  Goat: lambIcon,
+  'Ordinary Drink': ordinaryDrinksIcon,
+  Cocktail: cocktailIcon,
+  Shake: shakeIcon,
+  'Other/Unknown': otherIcon,
+  Cocoa: cocoaIcon,
+};
 
 function RecipesCards() {
   const { location: { pathname } } = useHistory();
@@ -30,7 +55,7 @@ function RecipesCards() {
   return (
     <>
       <li
-        className={ styles.recipe_card }
+        className={ styles.category }
       >
         <button
           type="button"
@@ -38,7 +63,8 @@ function RecipesCards() {
           data-testid="All-category-filter"
           onClick={ handleCategory }
         >
-          All
+          <img src={ pathname === '/meals' ? allMealsIcon : allDrinksIcon } alt="" />
+          <span>All</span>
         </button>
       </li>
       {
@@ -46,7 +72,7 @@ function RecipesCards() {
           if (index >= 0 && index <= START_MAX_INDEX) {
             return [...categoriesToShow, (
               <li
-                className={ styles.recipe_card }
+                className={ styles.category }
                 key={ index }
               >
                 <button
@@ -55,7 +81,8 @@ function RecipesCards() {
                   data-testid={ `${category.strCategory}-category-filter` }
                   onClick={ handleCategory }
                 >
-                  { category.strCategory }
+                  <img src={ categoryIcon[category.strCategory] } alt="" />
+                  <span>{ category.strCategory }</span>
                 </button>
               </li>
             )];

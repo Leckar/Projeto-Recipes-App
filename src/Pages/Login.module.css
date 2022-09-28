@@ -57,7 +57,6 @@
 
 .form_input:focus, .form_input:focus::placeholder {
   border-color: var(--yellow);
-  color: var(--yellow);
 }
 
 .form_button {
