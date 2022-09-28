@@ -63,12 +63,6 @@ function RecipeDetails() {
 
   const handleStartRecipe = () => {
     dispatch(setRecipeDetails(details));
-    // if (!inProgress) {
-    //   const startedRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    //   const recipeId = recipeInfo[1] === 'meals' ? details.idMeal : details.idDrink;
-    //   startedRecipes[recipeInfo[1]][recipeId] = [];
-    //   localStorage.setItem('inProgressRecipes', JSON.stringify(startedRecipes));
-    // }
     history.push(`${history.location.pathname}/in-progress`);
   };
 
