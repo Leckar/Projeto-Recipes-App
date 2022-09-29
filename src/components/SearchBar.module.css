@@ -23,6 +23,10 @@
   width: 100%;
 }
 
+.search_input:focus {
+  outline: none;
+}
+
 .search_button {
   align-items: center;
   background-color: var(--dark-yellow);
