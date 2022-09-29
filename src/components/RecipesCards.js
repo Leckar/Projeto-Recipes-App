@@ -7,8 +7,6 @@ const START_MAX_INDEX = 11;
 
 function RecipesCards() {
   const { location: { pathname } } = useHistory();
-  // const [minIndex, setMinIndex] = useState(0);
-  // const [maxIndex, setMaxIndex] = useState(START_MAX_INDEX);
   const recipes = useSelector((state) => state.recipes.array);
 
   return (
