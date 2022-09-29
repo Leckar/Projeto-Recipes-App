@@ -8,6 +8,7 @@ import styles from './RecipeDetails.module.css';
 import shareIcon from '../images/shareIcon.svg';
 import favoritedIcon from '../images/blackHeartIcon.svg';
 import unfavoritedIcon from '../images/whiteHeartIcon.svg';
+import Loading from '../components/Loading';
 
 const copy = require('clipboard-copy');
 
@@ -125,7 +126,7 @@ function RecipeDetails() {
 
   return (
     <main className={ styles.container }>
-      { loading ? <span>carregando...</span> : (
+      { loading ? <Loading /> : (
         <>
           <img
             src={ recipeInfo[1] === 'meals'
