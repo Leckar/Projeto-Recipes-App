@@ -53,6 +53,7 @@ function RecipeDetails() {
       setRecommendedRecipes(recomended);
     };
     getDetails();
+    setWasCopied(false);
   }, [history.location.pathname]);
 
   useEffect(() => {
