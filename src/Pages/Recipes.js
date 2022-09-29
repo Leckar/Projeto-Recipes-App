@@ -11,6 +11,7 @@ import styles from './Recipes.module.css';
 import RecipesCards from '../components/RecipesCards';
 import RecipesCategories from '../components/RecipesCategories';
 import fetchCategories from '../utils/fetchCategories';
+import Loading from '../components/Loading';
 
 function Recipes() {
   const { location: { pathname } } = useHistory();
@@ -34,7 +35,7 @@ function Recipes() {
       <ul className={ styles.categories }>
         <RecipesCategories />
       </ul>
-      { loading ? <span>carregando...</span> : (
+      { loading ? <Loading /> : (
         <ul className={ styles.recipes }>
           <RecipesCards />
         </ul>

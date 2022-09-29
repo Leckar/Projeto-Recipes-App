@@ -1,0 +1,47 @@
+:root {
+
+  --grey: #b1b1b1;
+
+  --dark-grey: #797d86;
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4vh;
+  width: 100%;
+}
+
+.email {
+  font-weight: 600;
+}
+
+.categories {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+  width: 100%;
+}
+
+.category {
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  color: var(--dark-grey);
+  display: flex;
+  font-size: 1.2rem;
+  gap: 3vh;
+  width: 70%;
+}
+
+.category img {
+  height: 6vh;
+}
+
+.line {
+  background-color: var(--grey);
+  height: 1px;
+  width: 80%;
+}
