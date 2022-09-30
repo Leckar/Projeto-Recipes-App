@@ -72,6 +72,7 @@ function RecipeInProgress() {
                       <input
                         type="checkbox"
                         id={ `${Number(ingredientNumber) - 1}}-ingredient` }
+                        onClick={ handleCompleteIngredient }
                       />
                       { `${detail[1]} ${
                         comparator[typeAndID[1]](measure) ? measure : ''}` }
