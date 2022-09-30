@@ -52,8 +52,9 @@ function RecipeInProgress() {
   const setInitialValues = (inProgressRecipes) => {
     const recipeId = typeAndID[1] === 'meals' ? recipe.idMeal : recipe.idDrink;
     const ingredientsChecks = Object.entries(recipe)
-      .filter((key) => key[0].includes('strIngredient')
-        && (typeAndID[1] === 'meals' ? key[1] !== '' : key[1] !== null))
+      .filter((key) => key[0].includes('strIngredient'))
+      .filter((key) => key[1] !== '')
+      .filter((key) => key[1] !== null)
       .map(() => false);
     console.log(ingredientsChecks);
     if (inProgressRecipes) {
