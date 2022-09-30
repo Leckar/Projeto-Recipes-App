@@ -13,9 +13,11 @@ function FavoriteRecipes() {
 
   useEffect(() => {
     const favoriteRecipeStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    setFavoriteRecipes(favoriteRecipeStorage);
-    setFavoriteRecipesToShow(favoriteRecipeStorage);
-    setLinkCopied('');
+    if (favoriteRecipeStorage) {
+      setFavoriteRecipes(favoriteRecipeStorage);
+      setFavoriteRecipesToShow(favoriteRecipeStorage);
+      setLinkCopied('');
+    }
   }, []);
 
   const handleShare = (id, type) => {

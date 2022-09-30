@@ -29,7 +29,7 @@ describe('Teste se a SearchBar para Drinks está funcionando corretamente', () =
     userEvent.click(screen.getByTestId(NAME_SEARCH_RADIO));
     userEvent.click(screen.getByTestId(EXEC_SEARCH_BUTTON));
 
-    await waitForElementToBeRemoved(screen.getByText(/carregando.../i), 500);
+    await waitForElementToBeRemoved(screen.getByText(/loading.../i), 500);
   });
 
   test('Se tentar pesquisar pela primeira letra com mais de um caracter aparece um alerta', async () => {
@@ -53,7 +53,7 @@ describe('Teste se a SearchBar para Drinks está funcionando corretamente', () =
     userEvent.click(screen.getByTestId(FIRST_LETTER_BUTTON));
     userEvent.click(screen.getByTestId(EXEC_SEARCH_BUTTON));
 
-    await waitForElementToBeRemoved(screen.getByText(/carregando.../i), 500);
+    await waitForElementToBeRemoved(screen.getByText(/loading.../i), 500);
   });
 
   test('Se ao der erro no Fetch aparece uma mensagem de alerta', async () => {
@@ -104,7 +104,7 @@ describe('Teste se a SearchBar para Drinks está funcionando corretamente', () =
     userEvent.click(screen.getByTestId('ingredient-search-radio'));
     userEvent.click(screen.getByTestId(EXEC_SEARCH_BUTTON));
 
-    await waitForElementToBeRemoved(screen.getByText(/carregando.../i), 500);
+    await waitForElementToBeRemoved(screen.getByText(/loading.../i), 500);
   });
 });
 
@@ -125,7 +125,7 @@ describe('Teste se a SearchBar para Meals está funcionando corretamente', () =>
     userEvent.click(screen.getByTestId(NAME_SEARCH_RADIO));
     userEvent.click(screen.getByTestId(EXEC_SEARCH_BUTTON));
 
-    await waitForElementToBeRemoved(screen.getByText(/carregando.../i), 500);
+    await waitForElementToBeRemoved(screen.getByText(/loading.../i), 500);
   });
 
   test('Se tentar pesquisar pela primeira letra com mais de um caracter aparece um alerta', async () => {
@@ -137,7 +137,7 @@ describe('Teste se a SearchBar para Meals está funcionando corretamente', () =>
     userEvent.click(screen.getByTestId(FIRST_LETTER_BUTTON));
     userEvent.click(screen.getByTestId(EXEC_SEARCH_BUTTON));
 
-    await waitForElementToBeRemoved(screen.getByText(/carregando.../i), 500);
+    await waitForElementToBeRemoved(screen.getByText(/loading.../i), 500);
   });
 
   test('Se ao der erro no Fetch aparece uma mensagem de alerta', async () => {
@@ -188,6 +188,6 @@ describe('Teste se a SearchBar para Meals está funcionando corretamente', () =>
     userEvent.click(screen.getByTestId('ingredient-search-radio'));
     userEvent.click(screen.getByTestId(EXEC_SEARCH_BUTTON));
 
-    await waitForElementToBeRemoved(screen.getByText(/carregando.../i), 500);
+    await waitForElementToBeRemoved(screen.getByText(/loading.../i), 500);
   });
 });

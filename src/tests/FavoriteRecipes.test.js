@@ -55,4 +55,11 @@ describe('Testa página favorite Recipes', () => {
 
     expect(screen.getByText('Link copied!')).toBeInTheDocument();
   });
+  test('Se o botão de "desfavoritar" funciona corretamente', () => {
+    localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipesMock));
+    renderWith(<App />, mockPath);
+
+    userEvent.click(screen.getByTestId('0-horizontal-favorite-btn'));
+    expect(screen.getAllByTestId(/horizontal-name/i).length).toBe(1);
+  });
 });

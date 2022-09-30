@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory, Link, withRouter } from 'react-router-dom';
 import styles from '../Pages/Recipes.module.css';
 
 const START_MAX_INDEX = 11;
@@ -40,4 +40,4 @@ function RecipesCards() {
   );
 }
 
-export default RecipesCards;
+export default withRouter(RecipesCards);

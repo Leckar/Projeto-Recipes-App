@@ -12,9 +12,11 @@ export default function DoneRecipes() {
 
   useEffect(() => {
     const doneRecipestorage = JSON.parse(localStorage.getItem('doneRecipes'));
-    setdoneRecipes(doneRecipestorage);
-    setDoneRecipesToShow(doneRecipestorage);
-    setLinkCopied('');
+    if (doneRecipestorage) {
+      setdoneRecipes(doneRecipestorage);
+      setDoneRecipesToShow(doneRecipestorage);
+      setLinkCopied('');
+    }
   }, []);
 
   const handleFilter = (type) => {
