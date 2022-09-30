@@ -55,6 +55,7 @@ function RecipeInProgress() {
       .filter((key) => key[0].includes('strIngredient')
         && (typeAndID[1] === 'meals' ? key[1] !== '' : key[1] !== null))
       .map(() => false);
+    console.log(ingredientsChecks);
     if (inProgressRecipes) {
       localStorage.setItem(RECIPE_INPROGRESS, JSON.stringify({
         ...inProgressRecipes,
