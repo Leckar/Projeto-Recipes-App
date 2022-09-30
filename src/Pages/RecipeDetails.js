@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, withRouter } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { setRecipeDetails } from '../redux/actions';
 import fetchRecipeDetails from '../utils/fetchRecipeDetails';
 import fetchToRecipes from '../utils/fetchToRecipes';
 import styles from './RecipeDetails.module.css';
@@ -29,7 +27,6 @@ function RecipeDetails() {
   const [wasCopied, setWasCopied] = useState(false);
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
-  const dispatch = useDispatch();
 
   const recipeInfo = history.location.pathname.split('/');
   const recomendedArrayLength = 6;

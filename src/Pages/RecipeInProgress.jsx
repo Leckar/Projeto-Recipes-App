@@ -26,7 +26,7 @@ function RecipeInProgress() {
   const [isFavorite, setIsFavorite] = useState(false);
   const [recipe, setRecipe] = useState({});
   const [checks, setChecks] = useState([]);
-  const [isFinished, setIsFinished] = useState([false]);
+  const [isFinished, setIsFinished] = useState(false);
 
   useEffect(() => {
     const getRecipeInfo = async () => {
@@ -37,11 +37,8 @@ function RecipeInProgress() {
   }, []);
 
   const progressChecker = (list) => {
-    if (list.every((e) => e !== false)) {
-      setIsFinished([true]);
-      return;
-    }
-    setIsFinished([false]);
+    if (list.every((e) => e !== false)) setIsFinished(true);
+    else setIsFinished(false);
   };
 
   const setCheckBoxCheckeds = (inProgressRecipes) => {
@@ -52,15 +49,26 @@ function RecipeInProgress() {
     setChecks([...recipeProgress[1]]);
   };
 
-  const setInitialValues = () => {
+  const setInitialValues = (inProgressRecipes) => {
     const recipeId = typeAndID[1] === 'meals' ? recipe.idMeal : recipe.idDrink;
     const ingredientsChecks = Object.entries(recipe)
       .filter((key) => key[0].includes('strIngredient')
         && (typeAndID[1] === 'meals' ? key[1] !== '' : key[1] !== null))
       .map(() => false);
-    localStorage.setItem(RECIPE_INPROGRESS, JSON.stringify({
-      [typeAndID[1]]: { [recipeId]: [...ingredientsChecks] },
-    }));
+    if (inProgressRecipes) {
+      localStorage.setItem(RECIPE_INPROGRESS, JSON.stringify({
+        ...inProgressRecipes,
+        [typeAndID[1]]: {
+          ...inProgressRecipes[typeAndID[1]],
+          [recipeId]: [...ingredientsChecks],
+        },
+      }));
+    } else {
+      localStorage.setItem(RECIPE_INPROGRESS, JSON.stringify({
+        [typeAndID[1] === 'meals' ? 'drinks' : 'meals']: {},
+        [typeAndID[1]]: { [recipeId]: [...ingredientsChecks] },
+      }));
+    }
     setChecks([...ingredientsChecks]);
   };
 
@@ -69,19 +77,13 @@ function RecipeInProgress() {
       const inProgressRecipes = JSON.parse(localStorage.getItem(RECIPE_INPROGRESS));
       const recipeId = typeAndID[1] === 'meals' ? recipe.idMeal : recipe.idDrink;
       if (!inProgressRecipes) {
-        setInitialValues();
+        setInitialValues(inProgressRecipes);
       } else {
         const isInProgress = Object.keys(inProgressRecipes[typeAndID[1]])
           .some((recipeInProgress) => recipeInProgress === recipeId);
         if (isInProgress) setCheckBoxCheckeds(inProgressRecipes);
         else {
-          localStorage.setItem(RECIPE_INPROGRESS, JSON.stringify({
-            ...inProgressRecipes,
-            [typeAndID[1]]: {
-              ...inProgressRecipes[typeAndID[1]],
-              [recipeId]: [],
-            },
-          }));
+          setInitialValues(inProgressRecipes);
         }
       }
       setLoading(false);
@@ -211,7 +213,7 @@ function RecipeInProgress() {
           <button
             type="button"
             data-testid="finish-recipe-btn"
-            disabled={ !isFinished[0] }
+            disabled={ !isFinished }
             onClick={ handleFinish }
           >
             Finish
