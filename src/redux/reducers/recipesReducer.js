@@ -11,11 +11,11 @@ const INITIAL_STATE = {
 const recipesReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case RECIPES_TO_SHOW:
-    return { ...state, array: [...action.payload], isFetching: false };
+    return { ...state, array: action.payload, isFetching: false };
   case IS_FETCHING_RECIPES:
     return { ...state, isFetching: true };
   case CATEGORIES_TO_SHOW:
-    return { ...state, categories: [...action.payload], isFetching: false };
+    return { ...state, categories: action.payload, isFetching: false };
   case SET_RECIPE_DETAILS:
     return { ...state, recipe: { ...action.payload } };
   default:

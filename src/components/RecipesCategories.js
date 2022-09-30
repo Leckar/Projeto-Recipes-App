@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, withRouter } from 'react-router-dom';
 import { isFetchingRecipes, setRecipesToShow } from '../redux/actions';
 import allMealsIcon from '../images/allMealsIcon.svg';
 import allDrinksIcon from '../images/allDrinksIcon.svg';
@@ -47,6 +47,7 @@ function RecipesCards() {
     dispatch(isFetchingRecipes());
     const response = await fetch(url());
     const { [type]: result } = await response.json();
+    console.log(result);
     dispatch(setRecipesToShow(result));
   };
 
@@ -89,4 +90,4 @@ function RecipesCards() {
   );
 }
 
-export default RecipesCards;
+export default withRouter(RecipesCards);
