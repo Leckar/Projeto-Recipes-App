@@ -92,7 +92,6 @@ function RecipeDetails() {
   };
 
   const handleStartRecipe = () => {
-    dispatch(setRecipeDetails(details));
     history.push(`${history.location.pathname}/in-progress`);
   };
 

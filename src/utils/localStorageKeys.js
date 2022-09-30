@@ -1,2 +1,2 @@
-export const RECIPE_COMPLETE = '';
-export const RECIPE_INPROGRESS = '';
+export const RECIPE_COMPLETE = 'doneRecipes';
+export const RECIPE_INPROGRESS = 'inProgressRecipes';
