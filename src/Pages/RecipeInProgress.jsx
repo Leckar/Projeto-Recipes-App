@@ -56,7 +56,6 @@ function RecipeInProgress() {
       .filter((key) => key[1] !== '')
       .filter((key) => key[1] !== null)
       .map(() => false);
-    console.log(ingredientsChecks);
     if (inProgressRecipes) {
       localStorage.setItem(RECIPE_INPROGRESS, JSON.stringify({
         ...inProgressRecipes,
@@ -148,6 +147,28 @@ function RecipeInProgress() {
   };
 
   const handleFinish = () => {
+    const newDate = new Date();
+    const recTags = recipe.strTags !== null ? recipe.strTags.split(', ') : [];
+
+    const doneRecipe = {
+      id: typeAndID[1] === 'meals' ? recipe.idMeal : recipe.idDrink,
+      type: typeAndID[1].slice(0, LAST_CHARACTER),
+      nationality: typeAndID[1] === 'meals' ? recipe.strArea : '',
+      category: recipe.strCategory,
+      alcoholicOrNot: typeAndID[1] === 'meals' ? '' : recipe.strAlcoholic,
+      name: typeAndID[1] === 'meals' ? recipe.strMeal : recipe.strDrink,
+      image: typeAndID[1] === 'meals' ? recipe.strMealThumb : recipe.strDrinkThumb,
+      doneDate: `${newDate.getDay()}/${newDate.getMonth()}/${newDate.getFullYear()}`,
+      tags: recTags,
+    };
+    const lastDoneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+    if (lastDoneRecipes) {
+      const newDoneRecipes = [...lastDoneRecipes, doneRecipe];
+      localStorage.setItem('doneRecipes', JSON.stringify(newDoneRecipes));
+    } else localStorage.setItem('doneRecipes', JSON.stringify([doneRecipe]));
+    const newInProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    delete newInProgressRecipes[typeAndID[1]][doneRecipe.id];
+    localStorage.setItem('inProgressRecipes', JSON.stringify(newInProgressRecipes));
     history.push('../../done-recipes');
   };
 
