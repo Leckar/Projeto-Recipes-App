@@ -1,0 +1,130 @@
+:root {
+
+  --gray: #b1b1b1;
+
+  --dark-gray: #797d86;
+}
+
+.share {
+  background-color: transparent;
+  border: none;
+}
+
+.categories {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  padding: 0;
+  width: 80vw;
+}
+
+.categories button {
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 5vh;
+}
+
+.categories button img {
+  height: 5vh;
+}
+
+.categories button span {
+  font-size: 0.5rem;
+  word-wrap: break-word;
+}
+
+.main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+
+.recipes_section {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.recipes_list {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5vh;
+  height: 60vh;
+  list-style: none;
+  margin-top: 6.5vh;
+  overflow: scroll;
+  padding: 0;
+  width: 90%;
+}
+
+.recipes_list::-webkit-scrollbar {
+  background-color: transparent;
+  width: 0;
+}
+
+.recipes_list li {
+  align-items: flex-end;
+  border: 1px solid var(--gray);
+  border-radius: 5px;
+  display: flex;
+  height: 16.4vh;
+  width: 100%;
+}
+
+.favorite_image {
+  border-radius: 5px 0 0 5px;
+  position: relative;
+  width: 45%;
+}
+
+.recipes_list li a {
+  align-items: flex-start;
+  color: black;
+  display: flex;
+  gap: 2vh;
+  text-decoration: none;
+  width: 100%;
+}
+
+.recipes_list li a h3 {
+  font-size: 1.2rem;
+  margin: 3vh 1.4vh 0;
+}
+
+.recipe_category {
+  color: var(--dark-gray);
+  display: flex;
+  flex-direction: column;
+  font-weight: 300;
+  margin-left: 1.4vh;
+  width: 20vh;
+}
+
+.recipe_buttons { 
+  top: -10vh;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1vh;
+  position: relative;
+  right: 1vh;
+}
+
+.recipe_buttons button {
+  background-color: transparent;
+  border: none;
+}
+
+.recipe_data {
+  align-items: flex-start;
+  display: flex;
+  flex-flow: column;
+  height: 16vh;
+  width: 100%;
+}
