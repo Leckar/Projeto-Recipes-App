@@ -83,10 +83,10 @@ function FavoriteRecipes() {
                   className={ styles.favorite_image }
                 />
                 <div className={ styles.recipe_data }>
-                  <span data-testid={ `${index}-horizontal-name` }>{ recipe.name }</span>
+                  <h3 data-testid={ `${index}-horizontal-name` }>{ recipe.name }</h3>
                   <span data-testid={ `${index}-horizontal-top-text` }>
-                    { `${recipe.nationality}  ${recipe.category}` }
-                    { recipe.type === 'drink' && <p>{ recipe.alcoholicOrNot }</p> }
+                    { `${recipe.nationality} ${recipe.category}` }
+                    { recipe.type === 'drink' && <p>{ ` ${recipe.alcoholicOrNot}` }</p> }
                   </span>
                 </div>
               </Link>
