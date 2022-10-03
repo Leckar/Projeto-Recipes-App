@@ -1,3 +1,101 @@
 .favorite_image {
-  width: 100px;
+  width: 65%;
+}
+
+.share {
+  border: none;
+  background-color: transparent;
+}
+
+.categories {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  padding: 0;
+  width: 80vw;
+}
+
+.categories button {
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 5vh;
+}
+
+.categories button img {
+  height: 5vh;
+}
+
+.categories button span {
+  font-size: 0.5rem;
+  word-wrap: break-word;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+}
+
+.recipes_section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recipes_list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+  padding: 0;
+  width:90%;
+}
+
+.recipes_list li {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.recipes_list li a{
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  text-decoration: none;
+  gap: 2vh;
+}
+
+
+
+
+.recipe_buttons {
+  display: flex;
+  position: relative;
+  right: 4%;
+  bottom: 10px;
+}
+
+.recipe_buttons button{
+  background-color: transparent;
+  border: none;
+
+}
+
+.recipe_data {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-left: 2px;
+  width: 100%;
+
 }

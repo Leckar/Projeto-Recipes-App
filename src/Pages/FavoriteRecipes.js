@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 import favoritedIcon from '../images/blackHeartIcon.svg';
 import styles from './FavoriteRecipes.module.css';
+import allRecipesIcon from '../images/AllRecipesIcon.svg';
+import allMealsIcon from '../images/allMealsIcon.svg';
+import allDrinksIcon from '../images/allDrinksIcon.svg';
 
 const copy = require('clipboard-copy');
 
@@ -41,32 +44,35 @@ function FavoriteRecipes() {
   };
 
   return (
-    <main>
-      <section>
+    <main className={ styles.main }>
+      <section className={ styles.categories }>
         <button
           data-testid="filter-by-all-btn"
           type="button"
           onClick={ () => handleFilter() }
         >
-          All
+          <img src={ allRecipesIcon } alt="all recipes icon" />
+          <span>All</span>
         </button>
         <button
           data-testid="filter-by-meal-btn"
           type="button"
           onClick={ () => handleFilter('meal') }
         >
-          Meal
+          <img src={ allMealsIcon } alt="meal recipes icon" />
+          <span>Meal</span>
         </button>
         <button
           data-testid="filter-by-drink-btn"
           type="button"
           onClick={ () => handleFilter('drink') }
         >
-          Drink
+          <img src={ allDrinksIcon } alt="drink recipes icon" />
+          <span>Drink</span>
         </button>
       </section>
-      <section>
-        <ul>
+      <section className={ styles.recipes_section }>
+        <ul className={ styles.recipes_list }>
           { favoriteRecipesToShow.map((recipe, index) => (
             <li key={ index }>
               <Link to={ `../${recipe.type}s/${recipe.id}` }>
@@ -76,33 +82,37 @@ function FavoriteRecipes() {
                   alt=""
                   className={ styles.favorite_image }
                 />
-                <span data-testid={ `${index}-horizontal-name` }>{ recipe.name }</span>
-                <span data-testid={ `${index}-horizontal-top-text` }>
-                  { `${recipe.nationality} - ${recipe.category}` }
-                  { recipe.type === 'drink' && <p>{ recipe.alcoholicOrNot }</p> }
-                </span>
+                <div className={ styles.recipe_data }>
+                  <span data-testid={ `${index}-horizontal-name` }>{ recipe.name }</span>
+                  <span data-testid={ `${index}-horizontal-top-text` }>
+                    { `${recipe.nationality}  ${recipe.category}` }
+                    { recipe.type === 'drink' && <p>{ recipe.alcoholicOrNot }</p> }
+                  </span>
+                </div>
               </Link>
-              <button
-                type="button"
-                onClick={ () => handleShare(recipe.id, recipe.type) }
-              >
-                <img
-                  data-testid={ `${index}-horizontal-share-btn` }
-                  src={ shareIcon }
-                  alt=""
-                />
-              </button>
-              { linkCopied === recipe.id && <p>Link copied!</p> }
-              <button
-                type="button"
-                onClick={ () => handleUnfavorite(recipe.id) }
-              >
-                <img
-                  data-testid={ `${index}-horizontal-favorite-btn` }
-                  src={ favoritedIcon }
-                  alt=""
-                />
-              </button>
+              <div className={ styles.recipe_buttons }>
+                <button
+                  type="button"
+                  onClick={ () => handleShare(recipe.id, recipe.type) }
+                >
+                  <img
+                    data-testid={ `${index}-horizontal-share-btn` }
+                    src={ shareIcon }
+                    alt=""
+                  />
+                </button>
+                { linkCopied === recipe.id && <p>Link copied!</p> }
+                <button
+                  type="button"
+                  onClick={ () => handleUnfavorite(recipe.id) }
+                >
+                  <img
+                    data-testid={ `${index}-horizontal-favorite-btn` }
+                    src={ favoritedIcon }
+                    alt=""
+                  />
+                </button>
+              </div>
             </li>
           )) }
         </ul>
