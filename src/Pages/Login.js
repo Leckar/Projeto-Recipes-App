@@ -14,7 +14,6 @@ export default function Login() {
     localStorage.setItem('user', JSON.stringify({ email }));
     localStorage.setItem('mealsToken', '1');
     localStorage.setItem('drinksToken', '1');
-    localStorage.setItem('doneRecipes', JSON.stringify([]));
     history.push('/meals');
   };
 

@@ -74,14 +74,13 @@
   border: 1px solid var(--gray);
   border-radius: 5px;
   display: flex;
-  height: 16.4vh;
   width: 100%;
 }
 
 .favorite_image {
   border-radius: 5px 0 0 5px;
   position: relative;
-  width: 45%;
+  width: 50%;
 }
 
 .recipes_list li a {
@@ -107,8 +106,8 @@
   width: 20vh;
 }
 
-.recipe_buttons { 
-  top: -10vh;
+.recipe_buttons {
+  bottom: 12vh;
   display: flex;
   flex-direction: column;
   margin-bottom: 1vh;
@@ -125,6 +124,5 @@
   align-items: flex-start;
   display: flex;
   flex-flow: column;
-  height: 16vh;
   width: 100%;
 }
