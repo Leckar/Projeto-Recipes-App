@@ -83,14 +83,9 @@ export default function DoneRecipes() {
                     { `${recipe.nationality} ${recipe.category}` }
                     { recipe.type === 'drink' && <p>{ recipe.alcoholicOrNot }</p> }
                   </span>
-                  <span className={ styles.recipe_date }>
-                    <span
-                      data-testid={ `${index}-horizontal-done-date` }
-                    >
-                      { recipe.doneDate }
-                    </span>
-                  </span>
-                  <p>
+                  <p
+                    className={ styles.recipe_type }
+                  >
                     {
                       recipe.tags.map((tag) => (
                         <span
@@ -102,6 +97,12 @@ export default function DoneRecipes() {
                       ))
                     }
                   </p>
+                  <span
+                    className={ styles.recipe_date }
+                    data-testid={ `${index}-horizontal-done-date` }
+                  >
+                    { recipe.doneDate }
+                  </span>
                 </div>
               </Link>
               <div className={ styles.recipe_buttons }>

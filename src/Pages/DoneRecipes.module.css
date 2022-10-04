@@ -81,6 +81,7 @@
   border-radius: 5px 0 0 5px;
   position: relative;
   width: 50%;
+  margin:auto;
 }
 
 .recipes_list li a {
@@ -94,7 +95,7 @@
 
 .recipes_list li a h3 {
   font-size: 1.2rem;
-  margin: 3vh 1.4vh 0;
+  margin: 1vh 1.4vh 0;
 }
 
 .recipe_category {
@@ -104,10 +105,11 @@
   font-weight: 300;
   margin-left: 1.4vh;
   width: 20vh;
+  font-size: 0.8rem;
 }
 
 .recipe_buttons {
-  bottom: 12vh;
+  bottom: 6vh;
   display: flex;
   flex-direction: column;
   margin-bottom: 1vh;
@@ -125,4 +127,13 @@
   display: flex;
   flex-flow: column;
   width: 100%;
+}
+
+.recipe_date {
+  font-size: 0.8rem;
+}
+
+.recipe_type {
+  font-size: 0.8rem;
+  margin-bottom: 0;
 }
