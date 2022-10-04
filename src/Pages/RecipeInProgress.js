@@ -173,74 +173,86 @@ function RecipeInProgress() {
   };
 
   return (
-    <main>
+    <main className={ styles.container }>
       { loading ? <Loading /> : (
         <>
-          <img
-            src={ typeAndID[1] === 'meals' ? recipe.strMealThumb : recipe.strDrinkThumb }
-            alt=""
-            data-testid="recipe-photo"
-            className={ styles.progress_recipe }
-          />
-          <h1 data-testid="recipe-title">
-            { typeAndID[1] === 'meals' ? recipe.strMeal : recipe.strDrink }
-          </h1>
-          <button
-            type="button"
-            onClick={ handleShare }
-          >
-            <img data-testid="share-btn" src={ shareIcon } alt="" />
-          </button>
-          { wasCopied && <span>Link copied!</span> }
-          <button
-            type="button"
-            onClick={ handleFavorite }
-          >
-            <img data-testid="favorite-btn" src={ FAVORITE_ICON[isFavorite] } alt="" />
-          </button>
-          <p data-testid="recipe-category">category</p>
-          <ul data-testid="instructions">
-            { Object.entries(recipe).reduce((ingredients, detail, index) => {
-              if (detail[0].includes('strIngredient')) {
-                if (detail[1] === '' || detail[1] === null) return ingredients;
-                const ingredientNumber = detail[0].replace('strIngredient', '');
-                const measure = recipe[`strMeasure${ingredientNumber}`];
-                const comparator = {
-                  meals: (x) => x !== '',
-                  drinks: (x) => x !== null,
-                };
-                return [...ingredients, (
-                  <li
-                    key={ index }
-                  >
-                    <label
-                      htmlFor={ `${Number(ingredientNumber) - 1}-ingredient` }
-                      data-testid={ `${Number(ingredientNumber) - 1}-ingredient-step` }
+          <header className={ styles.header }>
+            <img
+              src={ typeAndID[1] === 'meals'
+                ? recipe.strMealThumb : recipe.strDrinkThumb }
+              alt=""
+              data-testid="recipe-photo"
+              className={ styles.image }
+            />
+            <p data-testid="recipe-category" className={ styles.recipe_category }>
+              { typeAndID[1] === 'meals' ? recipe.strCategory : recipe.strAlcoholic }
+            </p>
+            <h1
+              data-testid="recipe-title"
+              className={ styles.recipe_title }
+            >
+              { typeAndID[1] === 'meals' ? recipe.strMeal : recipe.strDrink }
+            </h1>
+            <div className={ styles.button_container }>
+              <button
+                type="button"
+                onClick={ handleShare }
+              >
+                <img data-testid="share-btn" src={ shareIcon } alt="" />
+              </button>
+              { wasCopied && <span>Link copied!</span> }
+              <button
+                type="button"
+                onClick={ handleFavorite }
+              >
+                <img data-testid="favorite-btn" src={ FAVORITE_ICON[isFavorite] } alt="" />
+              </button>
+            </div>
+          </header>
+          <section className={ styles.detail_container }>
+            <ul data-testid="instructions">
+              { Object.entries(recipe).reduce((ingredients, detail, index) => {
+                if (detail[0].includes('strIngredient')) {
+                  if (detail[1] === '' || detail[1] === null) return ingredients;
+                  const ingredientNumber = detail[0].replace('strIngredient', '');
+                  const measure = recipe[`strMeasure${ingredientNumber}`];
+                  const comparator = {
+                    meals: (x) => x !== '',
+                    drinks: (x) => x !== null,
+                  };
+                  return [...ingredients, (
+                    <li
+                      key={ index }
                     >
-                      <input
-                        type="checkbox"
-                        id={ `${Number(ingredientNumber) - 1}-ingredient` }
-                        checked={ checks[Number(ingredientNumber) - 1] }
-                        onChange={ ({ target: { checked } }) => {
-                          handleCompleteIngredient(Number(ingredientNumber) - 1, checked);
-                        } }
-                      />
-                      { `${detail[1]} ${
-                        comparator[typeAndID[1]](measure) ? measure : ''}` }
-                    </label>
-                  </li>
-                )];
-              } return ingredients;
-            }, []) }
-          </ul>
-          <button
-            type="button"
-            data-testid="finish-recipe-btn"
-            disabled={ !isFinished }
-            onClick={ handleFinish }
-          >
-            Finish
-          </button>
+                      <label
+                        htmlFor={ `${Number(ingredientNumber) - 1}-ingredient` }
+                        data-testid={ `${Number(ingredientNumber) - 1}-ingredient-step` }
+                      >
+                        <input
+                          type="checkbox"
+                          id={ `${Number(ingredientNumber) - 1}-ingredient` }
+                          checked={ checks[Number(ingredientNumber) - 1] }
+                          onChange={ ({ target: { checked } }) => {
+                            handleCompleteIngredient(Number(ingredientNumber) - 1, checked);
+                          } }
+                        />
+                        { `${detail[1]} ${
+                          comparator[typeAndID[1]](measure) ? measure : ''}` }
+                      </label>
+                    </li>
+                  )];
+                } return ingredients;
+              }, []) }
+            </ul>
+            <button
+              type="button"
+              data-testid="finish-recipe-btn"
+              disabled={ !isFinished }
+              onClick={ handleFinish }
+            >
+              Finish
+            </button>
+          </section>
         </>
       ) }
     </main>

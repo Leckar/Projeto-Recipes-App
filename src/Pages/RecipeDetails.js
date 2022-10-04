@@ -15,7 +15,6 @@ const FAVORITE_ICON = {
   true: favoritedIcon,
   false: unfavoritedIcon,
 };
-
 function RecipeDetails() {
   const history = useHistory();
   const [details, setDetails] = useState({});
@@ -27,10 +26,8 @@ function RecipeDetails() {
   const [wasCopied, setWasCopied] = useState(false);
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
-
   const recipeInfo = history.location.pathname.split('/');
   const recomendedArrayLength = 6;
-
   useEffect(() => {
     if (loading && Object.keys(recommendedRecipe).length > 0) {
       history.push(`../${recipeInfo[1] === 'meals' ? 'drinks' : 'meals'}/${
@@ -38,7 +35,6 @@ function RecipeDetails() {
           ? recommendedRecipe.idDrink : recommendedRecipe.idMeal}`);
     }
   }, [loading, recommendedRecipe]);
-
   useEffect(() => {
     const lastFavoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
     if (lastFavoriteRecipes) setFavoriteRecipes(lastFavoriteRecipes);
@@ -53,7 +49,6 @@ function RecipeDetails() {
     getDetails();
     setWasCopied(false);
   }, [history.location.pathname]);
-
   useEffect(() => {
     if (Object.keys(details).length > 1) {
       const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
@@ -70,7 +65,6 @@ function RecipeDetails() {
       setLoading(false);
     }
   }, [details]);
-
   useEffect(() => {
     if (Object.keys(details).length > 1) {
       const lastFavoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
@@ -82,21 +76,17 @@ function RecipeDetails() {
       }
     }
   }, [details, isFavorite]);
-
   const handleRecomended = (recipe) => {
     setRecommendedRecipe(recipe);
     setLoading(true);
   };
-
   const handleStartRecipe = () => {
     history.push(`${history.location.pathname}/in-progress`);
   };
-
   const handleShare = () => {
     setWasCopied(true);
     copy(window.location.href);
   };
-
   const handleFavorite = () => {
     if (isFavorite) {
       const lastFavoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
@@ -119,105 +109,136 @@ function RecipeDetails() {
     }
     setIsFavorite((prevState) => !prevState);
   };
-
   return (
     <main className={ styles.container }>
       { loading ? <Loading /> : (
         <>
-          <img
-            src={ recipeInfo[1] === 'meals'
-              ? details.strMealThumb
-              : details.strDrinkThumb }
-            alt=""
-            data-testid="recipe-photo"
-            className={ styles.image }
-          />
-          <h1
-            data-testid="recipe-title"
-          >
-            { recipeInfo[1] === 'meals' ? details.strMeal : details.strDrink }
-          </h1>
-          <p data-testid="recipe-category">
-            { recipeInfo[1] === 'meals' ? details.strCategory : details.strAlcoholic }
-          </p>
-          <button
-            type="button"
-            data-testid="share-btn"
-            onClick={ handleShare }
-          >
-            <img src={ shareIcon } alt="" />
-          </button>
-          { wasCopied && <span>Link copied!</span> }
-          <button
-            type="button"
-            onClick={ handleFavorite }
-          >
-            <img data-testid="favorite-btn" src={ FAVORITE_ICON[isFavorite] } alt="" />
-          </button>
-          <ul>
-            { Object.entries(details).reduce((ingredients, detail, index) => {
-              if (detail[0].includes('strIngredient')) {
-                if (detail[1] === '' || detail[1] === null) return ingredients;
-                const ingredientNumber = detail[0].replace('strIngredient', '');
-                const measure = details[`strMeasure${ingredientNumber}`];
-                const comparator = {
-                  meals: (x) => x !== '',
-                  drinks: (x) => x !== null,
-                };
-                return [...ingredients, (
-                  <li
-                    data-testid={ `${
-                      Number(ingredientNumber) - 1}-ingredient-name-and-measure` }
-                    key={ index }
-                  >
-                    { `${detail[1]} ${
-                      comparator[recipeInfo[1]](measure) ? measure : ''}` }
-                  </li>
-                )];
-              } return ingredients;
-            }, []) }
-          </ul>
-          <p data-testid="instructions">{ details.strInstructions }</p>
-          { (recipeInfo[1] === 'meals') && (
-            <iframe
-              src={ details.strYoutube.replace('watch?v=', 'embed/') }
-              title="recipe video"
-              allowFullScreen
-              data-testid="video"
+          <header className={ styles.header }>
+            <img
+              src={ recipeInfo[1] === 'meals'
+                ? details.strMealThumb
+                : details.strDrinkThumb }
+              alt=""
+              data-testid="recipe-photo"
+              className={ styles.image }
             />
-          ) }
-          <ul className={ styles.recommendations }>
-            { recommendedRecipes.map((recipe, index) => (
-              <li
-                key={ index }
-                className={ styles.recommendation }
-                data-testid={ `${index}-recommendation-card` }
-              >
-                <button type="button" onClick={ () => handleRecomended(recipe) }>
-                  <img
-                    src={
-                      recipe[(recipeInfo[1] === 'meals'
-                        ? 'strDrinkThumb' : 'strMealThumb')]
-                    }
-                    alt=""
-                  />
-                  <p data-testid={ `${index}-recommendation-title` }>
-                    {recipe[(recipeInfo[1] === 'meals' ? 'strDrink' : 'strMeal')]}
-                  </p>
-                </button>
-              </li>
-            )) }
-          </ul>
-          {!isDone && (
-            <button
-              type="button"
-              data-testid="start-recipe-btn"
-              onClick={ handleStartRecipe }
-              className={ styles.start_button }
+            <p data-testid="recipe-category" className={ styles.recipe_category }>
+              { recipeInfo[1] === 'meals' ? details.strCategory : details.strAlcoholic }
+            </p>
+            <h1
+              data-testid="recipe-title"
+              className={ styles.recipe_title }
             >
-              {inProgress ? 'Continue Recipe' : 'Start Recipe'}
-            </button>
-          )}
+              { recipeInfo[1] === 'meals' ? details.strMeal : details.strDrink }
+            </h1>
+            <div className={ styles.button_container }>
+              <button
+                type="button"
+                data-testid="share-btn"
+                onClick={ handleShare }
+              >
+                <img src={ shareIcon } alt="" />
+              </button>
+              { wasCopied && <span>Link copied!</span> }
+              <button
+                type="button"
+                onClick={ handleFavorite }
+              >
+                <img
+                  data-testid="favorite-btn"
+                  src={ FAVORITE_ICON[isFavorite] }
+                  alt=""
+                />
+              </button>
+            </div>
+          </header>
+          <section className={ styles.detail_container }>
+            <section className={ styles.info_container }>
+              <h3>Ingredients</h3>
+              <ul className={ styles.content_container }>
+                { Object.entries(details).reduce((ingredients, detail, index) => {
+                  if (detail[0].includes('strIngredient')) {
+                    if (detail[1] === '' || detail[1] === null) return ingredients;
+                    const ingredientNumber = detail[0].replace('strIngredient', '');
+                    const measure = details[`strMeasure${ingredientNumber}`];
+                    const comparator = {
+                      meals: (x) => x !== '',
+                      drinks: (x) => x !== null,
+                    };
+                    return [...ingredients, (
+                      <li key={ index } className={ styles.list_item }>
+                        •
+                        <span
+                          data-testid={ `${
+                            Number(ingredientNumber) - 1}-ingredient-name-and-measure` }
+                        >
+                          { `${detail[1]} ${
+                            comparator[recipeInfo[1]](measure) ? measure : ''}` }
+                        </span>
+                      </li>
+                    )];
+                  } return ingredients;
+                }, []) }
+              </ul>
+            </section>
+            <section className={ styles.info_container }>
+              <h3>Instructions</h3>
+              <p
+                data-testid="instructions"
+                className={ styles.content_container }
+              >
+                { details.strInstructions }
+              </p>
+            </section>
+            { (recipeInfo[1] === 'meals') && (
+              <section className={ styles.info_container }>
+                <h3>Video</h3>
+                <iframe
+                  src={ details.strYoutube.replace('watch?v=', 'embed/') }
+                  title="recipe video"
+                  allowFullScreen
+                  data-testid="video"
+                  className={ styles.video }
+                />
+              </section>
+            ) }
+            <section className={ styles.info_container }>
+              <h3>Recommended</h3>
+              <ul className={ styles.recommendations }>
+                { recommendedRecipes.map((recipe, index) => (
+                  <li
+                    key={ index }
+                    className={ styles.recommendation }
+                    data-testid={ `${index}-recommendation-card` }
+                  >
+                    <button type="button" onClick={ () => handleRecomended(recipe) }>
+                      <img
+                        src={
+                          recipe[(recipeInfo[1] === 'meals'
+                            ? 'strDrinkThumb' : 'strMealThumb')]
+                        }
+                        alt=""
+                      />
+                      <p data-testid={ `${index}-recommendation-title` }>
+                        {recipe[(recipeInfo[1] === 'meals' ? 'strDrink' : 'strMeal')]}
+                      </p>
+                    </button>
+                  </li>
+                )) }
+              </ul>
+            </section>
+            {!isDone && (
+              <div className={ styles.start_button }>
+                <button
+                  type="button"
+                  data-testid="start-recipe-btn"
+                  onClick={ handleStartRecipe }
+                >
+                  {inProgress ? 'Continue Recipe' : 'Start Recipe'}
+                </button>
+              </div>
+            )}
+          </section>
         </>
       ) }
     </main>

@@ -11,6 +11,11 @@
   width: 100%;
 }
 
+.recipes::-webkit-scrollbar {
+  background-color: transparent;
+  width: 0;
+}
+
 .recipe_card {
   border: 1px solid rgb(190, 190, 190);
   border-radius: 5px;
