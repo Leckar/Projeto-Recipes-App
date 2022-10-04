@@ -210,48 +210,53 @@ function RecipeInProgress() {
             </div>
           </header>
           <section className={ styles.detail_container }>
-            <ul data-testid="instructions">
-              { Object.entries(recipe).reduce((ingredients, detail, index) => {
-                if (detail[0].includes('strIngredient')) {
-                  if (detail[1] === '' || detail[1] === null) return ingredients;
-                  const ingredientNumber = detail[0].replace('strIngredient', '');
-                  const measure = recipe[`strMeasure${ingredientNumber}`];
-                  const comparator = {
-                    meals: (x) => x !== '',
-                    drinks: (x) => x !== null,
-                  };
-                  return [...ingredients, (
-                    <li
-                      key={ index }
-                    >
-                      <label
-                        htmlFor={ `${Number(ingredientNumber) - 1}-ingredient` }
-                        data-testid={ `${Number(ingredientNumber) - 1}-ingredient-step` }
+            <section className={ styles.info_container }>
+              <h3>Ingredients</h3>
+              <ul data-testid="instructions" className={ styles.content_container }>
+                { Object.entries(recipe).reduce((ingredients, detail, index) => {
+                  if (detail[0].includes('strIngredient')) {
+                    if (detail[1] === '' || detail[1] === null) return ingredients;
+                    const ingredientNumber = detail[0].replace('strIngredient', '');
+                    const measure = recipe[`strMeasure${ingredientNumber}`];
+                    const comparator = {
+                      meals: (x) => x !== '',
+                      drinks: (x) => x !== null,
+                    };
+                    return [...ingredients, (
+                      <li
+                        key={ index }
                       >
-                        <input
-                          type="checkbox"
-                          id={ `${Number(ingredientNumber) - 1}-ingredient` }
-                          checked={ checks[Number(ingredientNumber) - 1] }
-                          onChange={ ({ target: { checked } }) => {
-                            handleCompleteIngredient(Number(ingredientNumber) - 1, checked);
-                          } }
-                        />
-                        { `${detail[1]} ${
-                          comparator[typeAndID[1]](measure) ? measure : ''}` }
-                      </label>
-                    </li>
-                  )];
-                } return ingredients;
-              }, []) }
-            </ul>
-            <button
-              type="button"
-              data-testid="finish-recipe-btn"
-              disabled={ !isFinished }
-              onClick={ handleFinish }
-            >
-              Finish
-            </button>
+                        <label
+                          htmlFor={ `${Number(ingredientNumber) - 1}-ingredient` }
+                          data-testid={ `${Number(ingredientNumber) - 1}-ingredient-step` }
+                        >
+                          <input
+                            type="checkbox"
+                            id={ `${Number(ingredientNumber) - 1}-ingredient` }
+                            checked={ checks[Number(ingredientNumber) - 1] }
+                            onChange={ ({ target: { checked } }) => {
+                              handleCompleteIngredient(Number(ingredientNumber) - 1, checked);
+                            } }
+                          />
+                          { `${detail[1]} ${
+                            comparator[typeAndID[1]](measure) ? measure : ''}` }
+                        </label>
+                      </li>
+                    )];
+                  } return ingredients;
+                }, []) }
+              </ul>
+            </section>
+            <div className={ styles.finish_button }>
+              <button
+                type="button"
+                data-testid="finish-recipe-btn"
+                disabled={ !isFinished }
+                onClick={ handleFinish }
+              >
+                Finish
+              </button>
+            </div>
           </section>
         </>
       ) }

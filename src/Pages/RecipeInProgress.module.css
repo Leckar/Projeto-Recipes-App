@@ -141,7 +141,7 @@
   width: 100%;
 }
 
-.start_button {
+.finish_button {
   align-items: center;
   bottom: 0;
   display: flex;
@@ -151,11 +151,15 @@
   width: 100%;
 }
 
-.start_button button {
+.finish_button button {
   background-color: var(--yellow);
   border: none;
   border-radius: 5px;
   color: white;
   height: 40px;
   width: 90%;
+}
+
+.finish_button button:disabled {
+  opacity: 0.7;
 }
