@@ -8,3 +8,6 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 - quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
 - quais arquivos/pastas foram desenvolvidos pela Trybe.
 -->
+Projeto feito em grupo com os colegas de curso Felipe Herbert Candido Marques (Github user F-Herbert),
+Karl Neuman de Oliveira Januário (Github user karl-no), Matheus Francisco Nascimento (Github user fnmatheus) e 
+Rafael Vitor Silva Sousa (Github user RafaelKnV).
