@@ -1,4 +1,4 @@
-# Receitas App
+# Recipes App
 
 Este é um app de receitas, desenvolvido utilizando Hooks e Context API do ecossistema React.js com componentes funcionais. Com ele, é possível ver, buscar, filtrar, favoritar e acompanhar o progresso de preparação de receitas de comidas e bebidas. A base de dados serão 2 APIs distintas, uma para comidas e outra para bebidas.
 
